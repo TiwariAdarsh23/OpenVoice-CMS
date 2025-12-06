@@ -1,0 +1,27 @@
+# Node.js
+node_modules/
+npm-debug.log*
+
+# Environment files
+.env
+.env.*.local
+
+# Logs
+logs/
+*.log
+
+# Build files
+build/
+dist/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor folders
+.vscode/
+.idea/
+
+#Photos folder
+api/uploads/*
+!api/uploads/.gitkeep
