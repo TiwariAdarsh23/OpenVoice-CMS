@@ -7,7 +7,6 @@ const Footer = () => {
   const { setMenu } = useAppContext();
   const navigate = useNavigate();
 
-  // Helper function to handle category clicks
   const handleCategoryClick = (category) => {
       setMenu(category);
       navigate('/');
@@ -50,7 +49,7 @@ const Footer = () => {
                     </ul>
                 </div>
 
-                {/* 4. Follow Us Section (New) */}
+                {/* 4. Follow Us Section */}
                 <div>
                     <h3 className='font-semibold text-gray-900 mb-4'>Follow Us</h3>
                     <ul className='text-sm text-gray-500 space-y-2'>
