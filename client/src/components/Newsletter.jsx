@@ -1,19 +1,17 @@
 import React, { useState } from 'react'
-import toast from 'react-hot-toast' // Import Toast
-
+import toast from 'react-hot-toast'
 const Newsletter = () => {
   const [email, setEmail] = useState('');
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    // No backend call here. Just visual feedback.
     toast.success("Welcome to the community!");
-    setEmail(''); // Clear the input box
+    setEmail('');
   }
 
   return (
     <div className='flex flex-col items-center justify-center text-center space-y-2 my-32'>
-        {/* REBRANDED TEXT */}
+        {}
         <h1 className='md:text-4xl text-2xl font-semibold'>Stay In The Loop.</h1>
         <p className='md:text-lg text-gray-500/70 pb-8'>
             Get the latest insights and trends delivered to your inbox.
