@@ -12,8 +12,6 @@ import { useUser } from '@clerk/clerk-react'
 const Blog = () => {
   const { id } = useParams()
   const { axios } = useAppContext()
-  
-  // 2. Get User Info
   const { user, isSignedIn } = useUser();
 
   const [data, setData] = useState(null)
@@ -46,7 +44,6 @@ const Blog = () => {
   const addComment = async (e) => {
     e.preventDefault();
     
-    // Logic: If logged in, use Clerk Name. If not, use Input Name.
     const commentName = isSignedIn ? (user.fullName || user.firstName) : name;
     
     if (!commentName) {
@@ -98,13 +95,13 @@ const Blog = () => {
       </div>
       <div className='mx-5 max-w-5xl md:mx-auto my-10 mt-6'>
         
-        {/* Cover Image: Fixed Height for consistency */}
+        {/*Cover Image*/}
         <img src={data.image} alt="Article Cover" className='rounded-3xl mb-5 w-full h-[500px] object-cover border border-gray-100 shadow-sm' />
         
-        {/* Article Body */}
+        {/*Article Body*/}
         <div className='rich-text max-w-3xl mx-auto' dangerouslySetInnerHTML={{ __html: data.description }}></div>
         
-        {/* Discussion Section (Rebranded from "Comments") */}
+        {/*Discussion Section*/}
         <div className='mt-14 mb-10 max-w-3xl mx-auto'>
           <p className='font-semibold mb-4 text-gray-800'>Discussion ({comments.length})</p>
           <div className='flex flex-col gap-4'>
@@ -121,12 +118,12 @@ const Blog = () => {
           </div>
         </div>
         
-        {/* "Join Conversation" Section (Rebranded from "Add Comment") */}
+        {/*"Join Conversation"*/}
         <div className='max-w-3xl mx-auto'>
           <p className='font-semibold mb-4 text-gray-800'>Join the conversation</p>
           <form onSubmit={addComment} className='flex flex-col items-start gap-4 max-w-lg'>
 
-            {/* Smart Display: Show User Profile if Logged In, Input if Guest */}
+            {/* Smart Display*/}
             {isSignedIn ? (
                 <div className='flex items-center gap-3 mb-2 bg-blue-50 p-2 rounded-lg pr-6'>
                     <img src={user.imageUrl} className='w-8 h-8 rounded-full' alt="user" />
