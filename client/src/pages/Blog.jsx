@@ -58,7 +58,7 @@ const Blog = () => {
       });
       
       if (data.success) {
-        toast.success("Response added successfully"); // Changed "Comment" to "Response"
+        toast.success("Response added successfully");
         setName('');
         setContent('');
         fetchComments(); 
