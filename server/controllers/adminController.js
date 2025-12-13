@@ -1,0 +1,302 @@
+// import jwt from "jsonwebtoken";
+// import Blog from "../models/Blog.js";
+// import Comment from "../models/Comment.js";
+
+
+// export const adminLogin=async(req,res)=>{
+//     try{
+//         const{email,password}=req.body;
+        
+//         if(email!==process.env.ADMIN_EMAIL || password!==process.env.ADMIN_PASSWORD){
+//             return res.json({success:false,message:"Invalid Credentials"})
+//         }
+
+//         const token =jwt.sign({email},process.env.JWT_SECRET)
+//         res.json({success:true,token})
+//     } catch(error){
+//         res.json({success:false,message:error.message})
+//     }
+// }
+
+// export const getAllBlogsAdmin = async (req, res) => {
+//     try {
+//         const blogs = await Blog.find({}).sort({ createdAt: -1 });
+//         res.json({ success: true, blogs });
+//     } catch (error) {
+//         res.json({ success: false, message: error.message });
+//     }
+// }
+// export const getAllComments= async (req, res) => {
+//     try {
+//         const comments = await Comment.find({}).populate('blog').sort({ createdAt: -1 });
+//         res.json({ success: true, comments });
+//     } catch (error) {           
+//         res.json({ success: false, message: error.message });
+//     }               
+// }
+// export const getDashboard = async (req, res) => {
+//     try {
+//         const recentBlogs = await Blog.find({}).sort({ createdAt: -1 }).limit(5);
+//         const blogs= await Blog.countDocuments();
+//         const comments = await Comment.countDocuments();
+//         const drafts = await Blog.countDocuments({ isPublished: false });
+//         const dashboardData={
+//             blogs,comments,drafts,recentBlogs
+//         }
+//         res.json({ success: true, dashboardData });
+//     } catch (error) {
+//         res.json({ success: false, message: error.message });
+//     }
+// }
+
+// export const deleteCommentById = async (req, res) => {
+//     try {
+//         const {id}= req.body;
+//         await Comment.findByIdAndDelete(id);
+//         res.json({ success: true, message: "Comment deleted successfully" });
+//     } catch (error) {
+//         res.json({ success: false, message: error.message });
+//     }   
+// }
+
+// export const approveCommentById = async (req, res) => {
+//     try {
+//         const { id } = req.body;
+//         await Comment.findByIdAndUpdate(id, { isApproved: true });
+//         res.json({ success: true, message: "Comment approved successfully" });
+//     } catch (error) {
+//         res.json({ success: false, message: error.message });
+//     }   
+// }
+
+
+
+
+
+
+
+
+
+
+
+// import jwt from "jsonwebtoken";
+// import Blog from "../models/Blog.js";
+// import Comment from "../models/Comment.js";
+
+// export const adminLogin = async (req, res) => {
+//     try {
+//         const { email, password } = req.body;
+//         if (email !== process.env.ADMIN_EMAIL || password !== process.env.ADMIN_PASSWORD) {
+//             return res.json({ success: false, message: "Invalid Credentials" });
+//         }
+//         const token = jwt.sign({ email }, process.env.JWT_SECRET);
+//         res.json({ success: true, token });
+//     } catch (error) {
+//         res.json({ success: false, message: error.message });
+//     }
+// }
+
+// export const getAllBlogsAdmin = async (req, res) => {
+//     try {
+//         // Admin sees ALL blogs (pending, approved, rejected)
+//         const blogs = await Blog.find({}).sort({ createdAt: -1 });
+//         res.json({ success: true, blogs });
+//     } catch (error) {
+//         res.json({ success: false, message: error.message });
+//     }
+// }
+
+// // --- NEW FUNCTION: Approve Blog ---
+// export const approveBlog = async (req, res) => {
+//     try {
+//         const { id } = req.body;
+//         await Blog.findByIdAndUpdate(id, { 
+//             status: 'approved', 
+//             isPublished: true 
+//         });
+//         res.json({ success: true, message: "Blog approved and published!" });
+//     } catch (error) {
+//         res.json({ success: false, message: error.message });
+//     }
+// }
+
+// // --- NEW FUNCTION: Reject Blog ---
+// export const rejectBlog = async (req, res) => {
+//     try {
+//         const { id } = req.body;
+//         await Blog.findByIdAndUpdate(id, { 
+//             status: 'rejected', 
+//             isPublished: false 
+//         });
+//         res.json({ success: true, message: "Blog rejected." });
+//     } catch (error) {
+//         res.json({ success: false, message: error.message });
+//     }
+// }
+
+// export const getAllComments = async (req, res) => {
+//     try {
+//         const comments = await Comment.find({}).populate('blog').sort({ createdAt: -1 });
+//         res.json({ success: true, comments });
+//     } catch (error) {
+//         res.json({ success: false, message: error.message });
+//     }
+// }
+
+// export const getDashboard = async (req, res) => {
+//     try {
+//         const recentBlogs = await Blog.find({}).sort({ createdAt: -1 }).limit(5);
+//         const blogs = await Blog.countDocuments();
+//         const comments = await Comment.countDocuments();
+        
+//         // Count specific statuses
+//         const pendingBlogs = await Blog.countDocuments({ status: 'pending' });
+//         const publishedBlogs = await Blog.countDocuments({ status: 'approved' });
+
+//         const dashboardData = {
+//             blogs,
+//             comments,
+//             pendingBlogs, // Send this to frontend for the badge
+//             publishedBlogs,
+//             recentBlogs
+//         };
+//         res.json({ success: true, dashboardData });
+//     } catch (error) {
+//         res.json({ success: false, message: error.message });
+//     }
+// }
+
+// export const deleteCommentById = async (req, res) => {
+//     try {
+//         const { id } = req.body;
+//         await Comment.findByIdAndDelete(id);
+//         res.json({ success: true, message: "Comment deleted successfully" });
+//     } catch (error) {
+//         res.json({ success: false, message: error.message });
+//     }
+// }
+
+// export const approveCommentById = async (req, res) => {
+//     try {
+//         const { id } = req.body;
+//         await Comment.findByIdAndUpdate(id, { isApproved: true });
+//         res.json({ success: true, message: "Comment approved successfully" });
+//     } catch (error) {
+//         res.json({ success: false, message: error.message });
+//     }
+// }
+
+
+
+
+
+
+
+
+
+import jwt from "jsonwebtoken";
+import Blog from "../models/Blog.js";
+import Comment from "../models/Comment.js";
+
+export const adminLogin = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+        if (email !== process.env.ADMIN_EMAIL || password !== process.env.ADMIN_PASSWORD) {
+            return res.json({ success: false, message: "Invalid Credentials" });
+        }
+        const token = jwt.sign({ email }, process.env.JWT_SECRET);
+        res.json({ success: true, token });
+    } catch (error) {
+        res.json({ success: false, message: error.message });
+    }
+}
+
+export const getAllBlogsAdmin = async (req, res) => {
+    try {
+        const blogs = await Blog.find({}).sort({ createdAt: -1 });
+        res.json({ success: true, blogs });
+    } catch (error) {
+        res.json({ success: false, message: error.message });
+    }
+}
+
+export const approveBlog = async (req, res) => {
+    try {
+        const { id } = req.body;
+        await Blog.findByIdAndUpdate(id, { 
+            status: 'approved', 
+            isPublished: true 
+        });
+        // CHANGED: "Blog..." -> "Article..."
+        res.json({ success: true, message: "Article approved and published!" });
+    } catch (error) {
+        res.json({ success: false, message: error.message });
+    }
+}
+
+export const rejectBlog = async (req, res) => {
+    try {
+        const { id } = req.body;
+        await Blog.findByIdAndUpdate(id, { 
+            status: 'rejected', 
+            isPublished: false 
+        });
+        // CHANGED: "Blog..." -> "Article..."
+        res.json({ success: true, message: "Article rejected." });
+    } catch (error) {
+        res.json({ success: false, message: error.message });
+    }
+}
+
+export const getAllComments = async (req, res) => {
+    try {
+        const comments = await Comment.find({}).populate('blog').sort({ createdAt: -1 });
+        res.json({ success: true, comments });
+    } catch (error) {
+        res.json({ success: false, message: error.message });
+    }
+}
+
+export const getDashboard = async (req, res) => {
+    try {
+        const recentBlogs = await Blog.find({}).sort({ createdAt: -1 }).limit(5);
+        const blogs = await Blog.countDocuments();
+        const comments = await Comment.countDocuments();
+        
+        const pendingBlogs = await Blog.countDocuments({ status: 'pending' });
+        const publishedBlogs = await Blog.countDocuments({ status: 'approved' });
+
+        const dashboardData = {
+            blogs,
+            comments,
+            pendingBlogs,
+            publishedBlogs,
+            recentBlogs
+        };
+        res.json({ success: true, dashboardData });
+    } catch (error) {
+        res.json({ success: false, message: error.message });
+    }
+}
+
+export const deleteCommentById = async (req, res) => {
+    try {
+        const { id } = req.body;
+        await Comment.findByIdAndDelete(id);
+        // CHANGED: "Comment..." -> "Response..."
+        res.json({ success: true, message: "Response deleted successfully" });
+    } catch (error) {
+        res.json({ success: false, message: error.message });
+    }
+}
+
+export const approveCommentById = async (req, res) => {
+    try {
+        const { id } = req.body;
+        await Comment.findByIdAndUpdate(id, { isApproved: true });
+        // CHANGED: "Comment..." -> "Response..."
+        res.json({ success: true, message: "Response approved successfully" });
+    } catch (error) {
+        res.json({ success: false, message: error.message });
+    }
+}
