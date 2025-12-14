@@ -2,6 +2,7 @@
 A Full-Stack Collaborative Publishing & Moderation System
 OpenVoice is a professional-grade MERN-stack platform designed for a collaborative content ecosystem. It features AI-assisted drafting, a robust editorial pipeline, and multi-tier authentication to manage authors and administrators seamlessly.
 
+
 # 🚀 Key Engineering Features
 ->Hybrid Authentication Architecture: Utilizes Clerk for secure community author onboarding and a custom JWT-based provider for administrative governance.
 
@@ -15,11 +16,14 @@ OpenVoice is a professional-grade MERN-stack platform designed for a collaborati
 
 
 # 🛠️ Tech Stack
-Layer	          Technologies
-Frontend	      React.js, Tailwind CSS, Clerk, Context API
-Backend	          Node.js, Express.js, JWT
-Database	      MongoDB (Mongoose ODM)
-AI/Services	      Google Gemini API, ImageKit API
+
+| Layer | Technologies |
+| :--- | :--- |
+| **Frontend** | React.js, Tailwind CSS, Clerk, Context API |
+| **Backend** | Node.js, Express.js, JWT |
+| **Database** | MongoDB (Mongoose ODM) |
+| **AI/Services** | Google Gemini API, ImageKit API |
+
 
 # 📂 System Architecture
 The project follows a Monorepo structure with a clear separation of concerns to ensure scalability:
@@ -36,12 +40,14 @@ The project follows a Monorepo structure with a clear separation of concerns to 
 
 2.Environment Configuration: Create a .env file in the /server directory and add the following keys:
 
-    MONGO_URI=your_mongodb_uri
     JWT_SECRET=your_secret_key
+    ADMIN_EMAIL=admin@example.com
+    ADMIN_PASSWORD=your_secure_password
     GEMINI_API_KEY=your_key
     IMAGEKIT_PUBLIC_KEY=your_key
     IMAGEKIT_PRIVATE_KEY=your_key
     IMAGEKIT_URL_ENDPOINT=your_url
+    MONGO_URI=your_mongodb_uri
 
 3.Install & Run:
 
