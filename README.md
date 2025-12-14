@@ -39,9 +39,9 @@
 
 ### 1. Clone the Repository
 ```bash
-git clone [https://github.com/TiwariAdarsh23/OpenVoice-CMS.git](https://github.com/TiwariAdarsh23/OpenVoice-CMS.git)
-
-**2. Environment Configuration:** Create a `.env` file in the `/server` directory and add the following keys:
+git clone https://github.com/TiwariAdarsh23/OpenVoice-CMS.git
+```
+### 2. Environment Configuration: Create a .env file in the /server directory and add the following keys:
 ```env
 # Admin Credentials
 ADMIN_EMAIL=admin@example.com
@@ -53,13 +53,17 @@ GEMINI_API_KEY=your_gemini_api_key
 IMAGEKIT_PUBLIC_KEY=your_imagekit_public_key
 IMAGEKIT_PRIVATE_KEY=your_imagekit_private_key
 IMAGEKIT_URL_ENDPOINT=your_imagekit_url_endpoint
-> **Note:** You also need a `.env` file in `/client` with your `VITE_CLERK_PUBLISHABLE_KEY`.
+```
+>Note: You also need a .env file in the /client directory with your
+VITE_CLERK_PUBLISHABLE_KEY.
 
-**3. Install & Run:**
+### 3. Install & Run
 ```bash
 # Setup Backend
 cd server
 npm install && npm run start
+
 # Setup Frontend (New Terminal)
 cd ../client
 npm install && npm run dev
+```
