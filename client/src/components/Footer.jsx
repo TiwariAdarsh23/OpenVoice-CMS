@@ -46,6 +46,7 @@ const Footer = () => {
                         <li><button onClick={() => handleCategoryClick('Technology')} className='hover:text-primary transition'>Technology</button></li>
                         <li><button onClick={() => handleCategoryClick('Lifestyle')} className='hover:text-primary transition'>Lifestyle</button></li>
                         <li><button onClick={() => handleCategoryClick('Finance')} className='hover:text-primary transition'>Finance</button></li>
+                        <li><button onClick={()=>{navigate('/admin');window.scrollTo(0, 0);}}className='hover:text-primary transition'>Admin Portal</button></li>
                     </ul>
                 </div>
 
